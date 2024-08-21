@@ -22,7 +22,6 @@ app.get('/pay', (req, res) => {
 
 app.post('/create-order', async (req, res) => {
     const { mobile, amount } = req.body;
-
     if (!mobile || !amount || amount <= 0) {
         return res.status(400).render('payment', { error: "Invalid input data" });
     }

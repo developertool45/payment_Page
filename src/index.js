@@ -13,7 +13,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.get('/', (req, res) => {
-    res.send('I am working ')
+    res.render('payment'); 
 });
 
 app.get('/pay', (req, res) => {

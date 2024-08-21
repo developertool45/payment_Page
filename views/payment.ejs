@@ -1,52 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment Page</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
+
 <body>
-    <h2>Make a Payment</h2>
+    <div class="py-container">
+        <div class="form-container">
+            <h2>Make a Payment</h2>
+        <% if (typeof error !=='undefined' ) { %>
+            <div class="error">
+                <%= error %>
+            </div>
+            <% } %>
 
-    <% if (typeof error !== 'undefined') { %>
-        <div class="error"><%= error %></div>
-    <% } %>
+                <form id="paymentForm" action="/create-order" method="POST">
+                    <div>
+                        <input type="text" name="mobile" id="mobile" placeholder="Enter Mobile Number" required>
+                    </div>
+                    <div>
+                        <input type="text" name="amount" id="amount" placeholder="Enter Amount" required>
+                    </div>
+                    <button type="submit">Pay Now</button>
+                </form>
 
-    <form id="paymentForm" action="/create-order" method="POST">
-        <input type="text" name="mobile" id="mobile" placeholder="Enter Mobile Number" required>
-        <input type="number" name="amount" id="amount" placeholder="Enter Amount" required>
-        <button type="submit">Pay Now</button>
-    </form>
+                <div id="successMessage" style="display:none;">Payment Successful!</div>
+        </div>
+    </div>
 
-    <div id="successMessage" style="display:none;">Payment Successful!</div>
-
-    <% if (typeof orderId !== 'undefined') { %>
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-    <script>
-        const options = {
-            "key": "<%= key %>",
-            "amount": "<%= amount * 100 %>",
-            "currency": "INR",
-            "name": "ENGINEERING ACADEMY DEHRADUN",
-            "description": "Test Transaction",
-            "order_id": "<%= orderId %>", 
-            "handler": function (response) {
-                document.getElementById('successMessage').style.display = 'block';
-                setTimeout(function(){
-                    window.location.href = "/payment-success"; // Replace with your success URL
-                }, 2000);
-            },
-            "prefill": {
-                "contact": "<%= mobile %>"
-            },
-            "theme": {
-                "color": "#007bff"
-            }
-        };
-        const rzp1 = new Razorpay(options);
-        rzp1.open();
-    </script>
-    <% } %>
+    <% if (typeof orderId !=='undefined' ) { %>
+        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+        <script>
+            const options = {
+                "key": "<%= key %>",
+                "amount": "<%= amount * 100 %>",
+                "currency": "INR",
+                "name": "ENGINEERING ACADEMY DEHRADUN",
+                "description": "Test Transaction",
+                "order_id": "<%= orderId %>",
+                "handler": function (response) {
+                    document.getElementById('successMessage').style.display = 'block';
+                    setTimeout(function () {
+                        window.location.href = "/payment-success"; // Replace with your success URL
+                    }, 2000);
+                },
+                "prefill": {
+                    "contact": "<%= mobile %>"
+                },
+                "theme": {
+                    "color": "#007bff"
+                }
+            };
+            const rzp1 = new Razorpay(options);
+            rzp1.open();
+        </script>
+        <% } %>
 </body>
+
 </html>

@@ -1,0 +1,87 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html{
+    font-size: 62.5%;
+}
+
+.py-container{
+    background: linear-gradient(rgba(33, 99, 127, 0.8),rgba(88, 26, 26, 0.8)), url('../img/pexels-photo-531880.jpeg');
+    height: 100vh;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+  
+}
+.form-container{
+    position: absolute;
+    width: 50%;  
+    max-width: 450px;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+   
+}
+.form-container #paymentForm div{
+    width: 100%;
+}
+.form-container #paymentForm div input{
+    display: block;
+    width: 70%;
+    padding: 10px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid rgb(15, 14, 14);
+    border-radius: 5px;
+    margin: 0 auto;
+}
+.form-container{
+    padding: 100px 10px;
+}
+.form-container h2{
+    text-align: center;
+    margin-bottom: 20px;
+    color: orangered;
+    font-size: 4rem;
+}
+.form-container #paymentForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2.3rem;
+}
+.form-container #paymentForm button[type="submit"]{
+    padding: 7px 15px;
+    background-color: orange;
+    outline: none;
+    border: 1px solid gray;
+    border-radius: 5px;
+    transition: 0.5s ease;
+    display: block;
+    margin-top: 20px;
+    width: 70%;
+    font-size: 1.4rem;
+}
+.form-container #paymentForm button[type="submit"]:hover{
+    background-color: #fff;
+    color: black;
+    transition: 0.5s ease;
+}
+@media screen and (max-width:767px) {
+    .form-container{
+        min-width: 80%;
+    }
+    .form-container h2 {
+        font-size: 3.2rem;
+    }
+    .form-container #paymentForm button[type="submit"]{
+        font-size: 1.5rem;
+    }
+}
